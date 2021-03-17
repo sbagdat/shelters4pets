@@ -15,12 +15,18 @@ gem "turbolinks", "~> 5"
 gem "webpacker", "~> 5.0"
 
 group :development, :test do
-  gem "byebug", platforms: %i[mri mingw x64_mingw]
+  # gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem "capybara"
+  gem "launchy"
+  gem "pry"
+  gem "rspec-rails"
+  gem "shoulda-matchers"
+  gem "simplecov"
 end
 
 group :development do
   gem "listen", "~> 3.3"
-  gem "rack-mini-profiler", "~> 2.0"
+  # gem 'rack-mini-profiler', '~> 2.0'
   gem "spring"
   gem "web-console", ">= 4.1.0"
 end
