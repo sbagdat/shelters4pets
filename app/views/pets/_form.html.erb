@@ -1,0 +1,17 @@
+<%= form_with model: @pet do |form| %>
+  <div class="form-field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="form-field">
+    <%= form.label :breed %>
+    <%= form.text_field :breed %>
+  </div>
+  <div class="form-field">
+    <%= form.label :age %>
+    <%= form.number_field :age %>
+  </div>
+  <div class="form-field">
+    <%= form.submit %>
+  </div>
+<% end %>
