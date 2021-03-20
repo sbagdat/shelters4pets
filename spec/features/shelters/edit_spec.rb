@@ -6,7 +6,7 @@ RSpec.describe "shelters edit page", type: :feature do
   describe "as a visitor" do
     describe "when I visit shelter show and visit the update link" do
       describe "then fill out the form and submit" do
-        it "can create update shelter" do
+        it "can update shelter" do
           shelter = create(:shelter)
 
           visit "/shelters/#{shelter.id}"

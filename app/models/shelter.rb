@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Shelter < ApplicationRecord
-  has_many :pets
+  has_many :pets, dependent: :destroy
 
   validates :name, :rank, :city, presence: true
   validates :rank, numericality: { only_integer: true }

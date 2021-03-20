@@ -2,5 +2,6 @@
 <div class="shelter-deatils">
   <p><span>City:</span> <%= @shelter.city %></p>
   <p><span>Rank:</span> <%= @shelter.rank %></p>
-  <%= link_to "Edit", edit_shelter_path(@shelter) %>
+  <%= link_to "Edit", edit_shelter_path(@shelter) %> |
+  <%= link_to "Delete", shelter_path(@shelter), method: :delete %>
 </div>

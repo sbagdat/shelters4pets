@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SheltersController < ApplicationController
-  before_action :select_shelter, only: %i[show edit update]
+  before_action :select_shelter, except: %i[index new create]
 
   def index
     @shelters = Shelter.all
@@ -30,6 +30,11 @@ class SheltersController < ApplicationController
     else
       render :edit, notice: "There are some problems..."
     end
+  end
+
+  def destroy
+    @shelter.destroy
+    redirect_to shelters_url, notice: "Shelter has been deleted."
   end
 
   private
