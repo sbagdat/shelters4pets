@@ -1,5 +1,5 @@
 class PetsController < ApplicationController
-  before_action :select_pet, only: [:show, :edit, :update]
+  before_action :select_pet, only: %i[show edit update destroy]
 
   def index
     @pets = Pet.all
@@ -11,7 +11,12 @@ class PetsController < ApplicationController
 
   def update
     @pet.update(pet_params)
-    redirect_to pet_path(@pet), notice: "Pet has successfully updated."
+    redirect_to pet_url(@pet), notice: "Pet has successfully updated."
+  end
+
+  def destroy
+    @pet.destroy
+    redirect_to pets_url, notice: "Pet has successfully deleted."
   end
 
   def shelter_pets
