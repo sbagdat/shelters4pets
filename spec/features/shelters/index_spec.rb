@@ -1,13 +1,17 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe "shelters index page", type: :feature do
-  it "can see the name of each shelter" do
-    shelter1 = create(:shelter)
-    shelter2 = create(:shelter)
+  describe "As a visitor" do
+    it "can see the name of each shelter" do
+      shelter1 = create(:shelter)
+      shelter2 = create(:shelter)
 
-    visit "/shelters"
+      visit "/shelters"
 
-    expect(page).to have_content(shelter1.name)
-    expect(page).to have_content(shelter2.name)
+      expect(page).to have_content(shelter1.name)
+      expect(page).to have_content(shelter2.name)
+    end
   end
 end

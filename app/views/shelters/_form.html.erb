@@ -1,0 +1,17 @@
+<%= form_with model: @shelter do |form| %>
+  <div class="form-field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="form-field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+  <div class="form-field">
+    <%= form.label :rank %>
+    <%= form.number_field :rank %>
+  </div>
+  <div class="form-field">
+    <%= form.submit %>
+  </div>
+<% end %>

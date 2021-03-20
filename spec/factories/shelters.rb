@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :shelter do
     sequence(:name, 1000) { |n| "Shelter #{n}" }
