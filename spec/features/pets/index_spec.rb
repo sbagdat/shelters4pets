@@ -18,5 +18,21 @@ RSpec.describe "pets index page", type: :feature do
       expect(page).to have_content(pet.age)
       expect(page).to have_content(pet.shelter_name)
     end
+
+    it "can see all pets information under the shelter" do
+      shelter1 = create(:shelter) do |shelter|
+        create_list(:pet, 5, shelter: shelter)
+      end
+
+      pets = shelter1.pets
+
+      visit "shelters/#{shelter1.id}/pets"
+
+      pets.each do |pet|
+        expect(page).to have_content(pet.name)
+        expect(page).to have_content(pet.age)
+        expect(page).to have_content(pet.breed)
+      end
+    end
   end
 end

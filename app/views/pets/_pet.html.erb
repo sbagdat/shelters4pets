@@ -2,5 +2,5 @@
   <h2><%= pet.name %></h2>
   <p><%= pet.breed %></p>
   <p><%= pet.age %></p>
-  <p><%= pet.shelter_name %></p>
+  <p><%= pet.shelter_name unless local_assigns.dig(:local, :hide_owner) %></p>
 </div>
