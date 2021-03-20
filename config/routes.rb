@@ -2,4 +2,5 @@
 
 Rails.application.routes.draw do
   resources :shelters
+  resources :pets, omly: :index
 end

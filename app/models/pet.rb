@@ -7,4 +7,6 @@ class Pet < ApplicationRecord
   validates :age, numericality: { only_integer: true }
 
   validates_associated :shelter
+
+  delegate :name, to: :shelter, prefix: true
 end
