@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "shelters index page", type: :feature do
+RSpec.describe "shelters new page", type: :feature do
   describe "as a visitor" do
     describe "when I visit shelters index and visit the new shelter link" do
       describe "then fill out the form and submit" do

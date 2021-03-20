@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SheltersController < ApplicationController
-  before_action :select_shelter, only: [:show]
+  before_action :select_shelter, only: %i[show edit update]
 
   def index
     @shelters = Shelter.all
@@ -19,6 +19,16 @@ class SheltersController < ApplicationController
       redirect_to shelters_url, notice: "Shelter has been created."
     else
       render :new, notice: "There are some problems..."
+    end
+  end
+
+  def edit; end
+
+  def update
+    if @shelter.update(shelter_params)
+      redirect_to shelter_url(@shelter), notice: "Shelter has been updated."
+    else
+      render :edit, notice: "There are some problems..."
     end
   end
 
