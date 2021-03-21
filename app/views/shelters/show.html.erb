@@ -2,6 +2,7 @@
 <div class="shelter-deatils">
   <p><span>City:</span> <%= @shelter.city %></p>
   <p><span>Rank:</span> <%= @shelter.rank %></p>
+  <%= link_to "New Pet", new_shelter_pet_path(@shelter)%>
   <% unless @pets.blank? %>
     <h2>Pets</h2>
     <%= render @pets, local: { hide_owner: true } %>
