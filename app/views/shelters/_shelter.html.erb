@@ -1,4 +1,10 @@
 <li>
-  <%= link_to shelter.name, shelter_path(shelter) %>
-  (<%= shelter.created_at %>)
+  <%= link_to shelter_path(shelter) do %>
+    <div class="block p-4 mt-4 border rounded-md">
+      <%= shelter.name %>
+      <span class="text-gray-500">- created
+        <%= "#{time_ago_in_words(shelter.created_at)} ago" %>
+      </span>
+    </div>
+  <% end %>
 </li>

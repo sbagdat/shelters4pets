@@ -1,7 +1,9 @@
-<h1>All Shelters</h1>
-<%= link_to "New Shelter", new_shelter_path %>
+<%= link_to "New Shelter", new_shelter_path, class: "block p-2 bg-gray-100 border w-32 text-center rounded-md my-8" %>
 
-<ul class="shelters">
+<h2 class="text-xl">All Shelters</h2>
+
+<ul class="shelters container w-2/3 grid">
   <%= render @shelters %>
 </ul>
+
 

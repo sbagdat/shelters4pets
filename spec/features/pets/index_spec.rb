@@ -38,13 +38,13 @@ RSpec.describe "pets index page", type: :feature do
     end
 
     it "can see pets filtered by greater than age" do
-      shelter1 = create(:shelter)
-      pet1 = shelter1.pets.create(name: "Young pet", breed: "breed 1", age: 4)
-      pet2 = shelter1.pets.create(name: "Old pet", breed: "breed 3", age: 6)
+      shelter1 = Shelter.create(name: "Test", city: "testing city", rank: 66)
+      pet1 = shelter1.pets.create(name: "Young pet", breed: "breed 1", age: 5)
+      pet2 = shelter1.pets.create(name: "Old pet", breed: "breed 3", age: 8)
 
       visit "shelters/#{shelter1.id}/pets"
 
-      fill_in "Age Filter", with: 5
+      fill_in "Age Filter", with: 7
       click_button "Filter"
 
       expect(current_path).to eq("/shelters/#{shelter1.id}/pets")
