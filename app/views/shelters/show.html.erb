@@ -3,9 +3,14 @@
   <p><span>City:</span> <%= @shelter.city %></p>
   <p><span>Rank:</span> <%= @shelter.rank %></p>
   <p><span>Pets Count:</span> <%= @shelter.pets.count %></p>
-  <%= link_to "New Pet", new_shelter_pet_path(@shelter)%>
+  <%= link_to "New Pet", new_shelter_pet_path(@shelter) %>
   <% if @pets %>
     <h2>Pets</h2>
+    <%= form_with url: "#{request.path}", method: :get, local: true do |form| %>
+      <%= form.label :age_filter, "Age Filter" %>
+      <%= form.number_field :age_filter %>
+      <%= form.submit "Filter" %>
+    <% end %>
     <%= render @pets, local: { hide_owner: true } %>
   <% end %>
   <%= link_to "Edit", edit_shelter_path(@shelter) %> |

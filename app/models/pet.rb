@@ -13,6 +13,7 @@ class Pet < ApplicationRecord
   delegate :name, to: :shelter, prefix: true, allow_nil: true
 
   scope :adoptable, -> { where(adoptable: true) }
+  scope :age_older_than, ->(age) { where("age > ?", age) }
 
   private
 
