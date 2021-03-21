@@ -1,3 +1,4 @@
-<div class="shelter">
-  <h2><%= shelter.name %></h2>
-</div>
+<li>
+  <%= link_to shelter.name, shelter_path(shelter) %>
+  (<%= shelter.created_at %>)
+</li>

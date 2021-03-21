@@ -4,7 +4,7 @@ class SheltersController < ApplicationController
   before_action :select_shelter, except: %i[index new create]
 
   def index
-    @shelters = Shelter.all
+    @shelters = Shelter.all_descending
   end
 
   def show; end

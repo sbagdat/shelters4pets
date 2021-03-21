@@ -5,4 +5,6 @@ class Shelter < ApplicationRecord
 
   validates :name, :rank, :city, presence: true
   validates :rank, numericality: { only_integer: true }
+
+  scope :all_descending, -> { all.order(created_at: :desc) }
 end
