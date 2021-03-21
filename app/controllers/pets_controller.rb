@@ -25,7 +25,7 @@ class PetsController < ApplicationController
   def edit; end
 
   def update
-    @pet.update(pet_params)
+    @pet.update!(pet_params)
     redirect_to pet_url(@pet), notice: "Pet has successfully updated."
   end
 
