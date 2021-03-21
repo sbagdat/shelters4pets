@@ -10,7 +10,9 @@ class Pet < ApplicationRecord
   validates :name, :breed, presence: true
   validates :age, numericality: { only_integer: true }
 
-  delegate :name, to: :shelter, prefix: true
+  delegate :name, to: :shelter, prefix: true, allow_nil: true
+
+  scope :adoptable, -> { where(adoptable: true) }
 
   private
 

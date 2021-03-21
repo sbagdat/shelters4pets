@@ -8,7 +8,7 @@ class PetsController < ApplicationController
       @pets = @shelter.pets
       render "shelters/show"
     end
-    @pets = Pet.all
+    @pets = Pet.adoptable
   end
 
   def show; end
