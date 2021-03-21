@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Shelters4pets</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -10,7 +10,8 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="p-8">
+    <%= link_to "Shelters 4 Pets", root_path, class: "text-4xl text-center" %>
     <%= yield %>
   </body>
 </html>
