@@ -2,27 +2,26 @@
 
 class PetsController < ApplicationController
   before_action :select_pet, except: %i[index new create]
-  before_action :select_shelter, only: %i[new create]
+  before_action :select_shelter, if: -> { params[:shelter_id] }
+  before_action :select_shelter_pets, if: -> { @shelter }
 
   def index
-    if params[:shelter_id]
-      select_shelter
-      @pets = @shelter.pets
-      @pets = @pets.order(:name) if params[:sorted]
-      @pets = @pets.age_older_than(params[:age_filter].to_i) if params[:age_filter]
+    if @shelter
+      apply_filters
       render "shelters/show"
+    else
+      @pets = Pet.all
     end
-    @pets = Pet.all
   end
 
   def show; end
 
   def new
-    @pet = @shelter.pets.new
+    @pet = @pets.new
   end
 
   def create
-    @shelter.pets.create(pet_params)
+    @pets.create(pet_params)
     redirect_to shelter_pets_url, notice: "New pet is created."
   end
 
@@ -40,12 +39,30 @@ class PetsController < ApplicationController
 
   private
 
+  def apply_filters
+    apply_sort_filter
+    apply_age_filter
+  end
+
   def select_shelter
     @shelter = Shelter.find(params[:shelter_id])
   end
 
   def select_pet
     @pet = Pet.find(params[:id])
+  end
+
+  def select_shelter_pets
+    @pets = @shelter.pets
+  end
+
+  def apply_sort_filter
+    @pets = @pets.order(:name) if params[:sorted]
+  end
+
+  def apply_age_filter
+    age_filter = params[:age_filter]
+    @pets = @pets.age_older_than(age_filter.to_i) if age_filter
   end
 
   def pet_params
