@@ -1,18 +1,18 @@
 <% @form_model = local_assigns.dig(:locals, :form_objects) || @pet %>
 <%= form_with model: @form_model do |form| %>
-  <div class="form-field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-field mb-4">
+    <%= form.label :name, class: "font-bold w-32 inline-block" %>
+    <%= form.text_field :name, class: "border rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300" %>
+  </div>
+  <div class="form-field mb-4">
+    <%= form.label :breed, class: "font-bold w-32 inline-block" %>
+    <%= form.text_field :breed, class: "border rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300" %>
+  </div>
+  <div class="form-field mb-4">
+    <%= form.label :age, class: "font-bold w-32 inline-block" %>
+    <%= form.number_field :age, class: "border rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300" %>
   </div>
   <div class="form-field">
-    <%= form.label :breed %>
-    <%= form.text_field :breed %>
-  </div>
-  <div class="form-field">
-    <%= form.label :age %>
-    <%= form.number_field :age %>
-  </div>
-  <div class="form-field">
-    <%= form.submit %>
+    <%= form.submit(class: "block p-2 bg-gray-500 text-white border w-32 text-center rounded-md my-4 inline-block") %>
   </div>
 <% end %>

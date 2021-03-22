@@ -1,10 +1,20 @@
-<div class="pet">
-  <h2><%= @pet.name %></h2>
-  <p>Breed: <%= @pet.breed %></p>
-  <p>Age: <%= @pet.age %></p>
-  <p>Shelter: <%= @pet.shelter_name %></p>
+<div class="block p-2 bg-gray-50 border rounded-md my-4 p-4">
+  <h2 class="text-2xl text-gray-600 mb-8 mr-8 inline-block">Details of pet: <%= @pet.name %></h2>
+  <p><span class="font-bold w-24 inline-block">Breed:</span><%= @pet.breed %></p>
+  <p><span class="font-bold w-24 inline-block">Age:</span><%= @pet.age %></p>
+  <p>
+    <span class="font-bold w-24 inline-block">
+    Shelter:
+    </span><%= link_to @pet.shelter_name, shelter_path(@pet.shelter), class: "hover:underline" %>
+  </p>
   <p class="links">
-    <%= link_to "Edit", edit_pet_path(@pet) %>
-    <%= link_to "Delete", pet_path(@pet), method: :delete %>
+    <%= link_to "Edit",
+                edit_pet_path(@pet),
+                class: "block p-2 bg-blue-500 text-white border w-32 text-center rounded-md my-4 inline-block" %>
+    <%= link_to "Delete",
+                pet_path(@pet),
+                method: :delete,
+                class: "block p-2 bg-red-500 text-white border w-32 text-center rounded-md my-4 inline-block",
+                data: { confirm: "Are you sure?" } %>
   </p>
 </div>

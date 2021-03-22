@@ -1,18 +1,28 @@
-<h1><%= @shelter.name %></h1>
-<div class="shelter-details">
-  <p><span>City:</span> <%= @shelter.city %></p>
-  <p><span>Rank:</span> <%= @shelter.rank %></p>
-  <p><span>Pets Count:</span> <%= @shelter.pets.count %></p>
-  <%= link_to "New Pet", new_shelter_pet_path(@shelter) %>
+<div class="block p-2 bg-gray-50 border rounded-md my-4 p-4">
+  <h2 class="text-2xl text-gray-600 mb-8 mr-8 inline-block uppercase"><%= @shelter.name %></h2>
+  <%= link_to "Edit",
+              edit_shelter_path(@shelter),
+              class: "block p-2 bg-blue-500 text-md text-white border w-24 text-center rounded-md my-4 inline-block" %>
+  <%= link_to "Delete",
+              shelter_path(@shelter),
+              method: :delete,
+              class: "block p-2 bg-red-500 text-white text-md border w-24 text-center rounded-md my-4 inline-block",
+              data: {confirm: "Are you sure?"}%>
+  <p><span class="font-bold w-24 inline-block">City:</span> <%= @shelter.city %></p>
+  <p><span class="font-bold w-24 inline-block">Rank:</span> <%= @shelter.rank %></p>
+  <p><span class="font-bold w-24 inline-block">Pets Count:</span> <%= @shelter.pets.count %></p>
+  <%= link_to "Show Pets", shelter_pets_path(@shelter), class: "block p-2 bg-yellow-500 text-white border w-32 text-center rounded-md my-4 inline-block" %>
+  <%= link_to "New Pet", new_shelter_pet_path(@shelter), class: "block p-2 bg-gray-500 text-white border w-32 text-center rounded-md my-4 inline-block" %>
   <% if @pets %>
-    <h2>Pets</h2>
-    <%= form_with url: "#{request.path}", method: :get, local: true do |form| %>
-      <%= form.label :age_filter, "Age Filter" %>
-      <%= form.number_field :age_filter %>
-      <%= form.submit "Filter" %>
+    <h3 class="text-xl text-gray-600 my-8 mr-8 block uppercase">Pets adopted by <%= @shelter.name %></h3>
+    <%= form_with url: "#{request.path}", method: :get, local: true, class: "mb-8" do |form| %>
+      <span class="font-bold">Filters: </span>
+      <%= form.label :age_filter, "age greater than: ", class: "text-sm text-gray-400 ml-4" %>
+      <%= form.number_field :age_filter, value: (params[:age_filter] || 0), min: 0, class: "w-16 inline-block mx-4 border rounded-md p-1" %>
+      <%= form.submit "Apply Filter", class: "block p-1 bg-gray-200 text-sm text-gray-600 border w-32 text-center rounded-md inline-block" %>
     <% end %>
-    <%= render @pets, local: { hide_owner: true } %>
+    <ul class="pets list-none">
+      <%= render @pets, local: { hide_owner: true } %>
+    </ul>
   <% end %>
-  <%= link_to "Edit", edit_shelter_path(@shelter) %> |
-  <%= link_to "Delete", shelter_path(@shelter), method: :delete %>
 </div>

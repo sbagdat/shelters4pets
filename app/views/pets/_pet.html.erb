@@ -1,6 +1,15 @@
-<div class="pet">
-  <h2><%= pet.name %></h2>
-  <p><%= pet.breed %></p>
-  <p><%= pet.age %></p>
-  <p><%= pet.shelter_name unless local_assigns.dig(:local, :hide_owner) %></p>
-</div>
+<li>
+  <%= link_to pet_path(pet) do %>
+    <div class="block p-4 mt-4 border rounded-md">
+      <p><span class="font-bold w-24 inline-block">Name:</span><%= pet.name %></p>
+      <p><span class="font-bold w-24 inline-block">Breed:</span><%= pet.breed %></p>
+      <p><span class="font-bold w-24 inline-block">Age:</span><%= pet.age %></p>
+      <% unless local_assigns.dig(:local, :hide_owner) %>
+        <p>
+          <span class="font-bold w-24 inline-block">Shelter:</span>
+          <%= pet.shelter_name %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+</li>
