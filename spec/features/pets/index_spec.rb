@@ -44,8 +44,8 @@ RSpec.describe "pets index page", type: :feature do
 
       visit "shelters/#{shelter1.id}/pets"
 
-      fill_in "Age Filter", with: 7
-      click_button "Filter"
+      fill_in "age greater than:", with: 7
+      click_button "Apply Filter"
 
       expect(current_path).to eq("/shelters/#{shelter1.id}/pets")
 

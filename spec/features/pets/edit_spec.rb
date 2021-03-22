@@ -27,8 +27,8 @@ RSpec.describe "pets edit page", type: :feature do
 
           expect(current_path).to eq("/pets/#{pet.id}")
           expect(page).to have_content("Puppy")
-          expect(page).to have_content("Age: 5")
-          expect(page).to have_content("Breed: Lambador")
+          expect(page).to have_content("Age:5")
+          expect(page).to have_content("Breed:Lambador")
         end
       end
     end

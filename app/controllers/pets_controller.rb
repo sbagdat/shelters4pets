@@ -6,7 +6,7 @@ class PetsController < ApplicationController
     if params[:shelter_id]
       select_shelter
       @pets = @shelter.pets
-      @pets = @pets..age_older_than(params[:age_filter].to_i) if params[:age_filter]
+      @pets = @pets.age_older_than(params[:age_filter].to_i) if params[:age_filter]
       render "shelters/show"
     end
     @pets = Pet.adoptable
