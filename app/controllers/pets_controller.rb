@@ -5,11 +5,8 @@ class PetsController < ApplicationController
   def index
     if params[:shelter_id]
       select_shelter
-      @pets = if params[:age_filter]
-                Pet.age_older_than(params[:age_filter])
-              else
-                @shelter.pets
-              end
+      @pets = @shelter.pets
+      @pets = @pets..age_older_than(params[:age_filter].to_i) if params[:age_filter]
       render "shelters/show"
     end
     @pets = Pet.adoptable

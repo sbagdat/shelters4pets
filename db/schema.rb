@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2021_03_21_013941) do
   create_table "pets", force: :cascade do |t|
     t.string "name", null: false
     t.string "breed", null: false
-    t.string "age", default: "0", null: false
+    t.integer "age", default: 0, null: false
     t.bigint "shelter_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

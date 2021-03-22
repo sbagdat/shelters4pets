@@ -3,7 +3,7 @@ class CreatePets < ActiveRecord::Migration[6.1]
     create_table :pets do |t|
       t.string :name, null: false
       t.string :breed, null: false
-      t.string :age, null: false, default: 0
+      t.integer :age, null: false, default: 0
       t.belongs_to :shelter, null: true, foreign_key: true
 
       t.timestamps
