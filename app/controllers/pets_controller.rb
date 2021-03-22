@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PetsController < ApplicationController
   before_action :select_pet, except: %i[index new create]
   before_action :select_shelter, only: %i[new create]
@@ -6,6 +8,7 @@ class PetsController < ApplicationController
     if params[:shelter_id]
       select_shelter
       @pets = @shelter.pets
+      @pets = @pets.order(:name) if params[:sorted]
       @pets = @pets.age_older_than(params[:age_filter].to_i) if params[:age_filter]
       render "shelters/show"
     end
@@ -46,6 +49,6 @@ class PetsController < ApplicationController
   end
 
   def pet_params
-    params.require(:pet).permit(:name, :breed, :age)
+    params.require(:pet).permit(:name, :breed, :age, :shelter_id)
   end
 end

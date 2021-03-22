@@ -52,5 +52,30 @@ RSpec.describe "pets index page", type: :feature do
       expect(page).to have_content(pet2.age)
       expect(page).to have_content(pet2.breed)
     end
+
+    it "can be sorted alphabetically" do
+      shelter1 = Shelter.create(name: "Test", city: "testing city", rank: 66)
+      pet1 = shelter1.pets.create(name: "A pet", breed: "breed 1", age: 5)
+      pet2 = shelter1.pets.create(name: "Old pet", breed: "breed 3", age: 8)
+
+      visit "shelters/#{shelter1.id}/pets"
+
+      click_link "Show Pets"
+
+      click_button "Sort Alphabetically"
+      expect(current_path).to eq("/shelters/#{shelter1.id}/pets")
+
+      within "ul.pets li:first-child" do
+        expect(page).to have_content(pet1.name)
+        expect(page).to have_content(pet1.age)
+        expect(page).to have_content(pet1.breed)
+      end
+
+      within "ul.pets li:nth-child(2)" do
+        expect(page).to have_content(pet2.name)
+        expect(page).to have_content(pet2.age)
+        expect(page).to have_content(pet2.breed)
+      end
+    end
   end
 end
