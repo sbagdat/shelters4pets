@@ -4,21 +4,16 @@ require "rails_helper"
 
 RSpec.describe "pets index page", type: :feature do
   describe "As a visitor" do
-    it "can see the attributes of each adoptable pet" do
-      shelter1 = Shelter.create!(name: "Sample Shelter", city: "City", rank: "0")
+    it "can see the attributes of each pet" do
+      shelter = Shelter.create!(name: "Sample Shelter", city: "City", rank: "0")
 
-      not_adoptable_pet = shelter1.pets.create(name: "Sample name", breed: "Sample Breed", age: "45")
-      adoptable_pet = create(:pet)
+      pet = shelter.pets.create(name: "Sample name", breed: "Sample Breed", age: "45")
 
       visit "/pets"
 
-      expect(page).to_not have_content(not_adoptable_pet.name)
-      expect(page).to_not have_content(not_adoptable_pet.breed)
-      expect(page).to_not have_content(not_adoptable_pet.age)
-
-      expect(page).to have_content(adoptable_pet.name)
-      expect(page).to have_content(adoptable_pet.breed)
-      expect(page).to have_content(adoptable_pet.age)
+      expect(page).to have_content(pet.name)
+      expect(page).to have_content(pet.breed)
+      expect(page).to have_content(pet.age)
     end
 
     it "can see all pets information under the shelter" do
