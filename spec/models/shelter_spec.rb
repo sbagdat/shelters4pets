@@ -9,4 +9,8 @@ RSpec.describe Shelter, type: :model do
     it { should validate_numericality_of(:rank).only_integer }
     it { should validate_presence_of(:city) }
   end
+
+  describe "relationships" do
+    it { should have_many(:pets) }
+  end
 end

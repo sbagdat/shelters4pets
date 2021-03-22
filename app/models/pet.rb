@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pet < ApplicationRecord
-  belongs_to :shelter, optional: true
+  belongs_to :shelter
   before_save :make_not_adoptable, if: :shelter
 
   attribute :adoptable, :boolean, default: true
@@ -10,7 +10,6 @@ class Pet < ApplicationRecord
   validates :name, :breed, presence: true
   validates :age, numericality: { only_integer: true }
 
-  scope :adoptable, -> { where(adoptable: true) }
   scope :age_older_than, ->(age) { where("age > ?", age) }
 
   delegate :name, to: :shelter, prefix: true, allow_nil: true

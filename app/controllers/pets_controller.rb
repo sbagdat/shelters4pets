@@ -9,7 +9,7 @@ class PetsController < ApplicationController
       @pets = @pets.age_older_than(params[:age_filter].to_i) if params[:age_filter]
       render "shelters/show"
     end
-    @pets = Pet.adoptable
+    @pets = Pet.all
   end
 
   def show; end
