@@ -36,5 +36,13 @@ RSpec.describe "shelters index page", type: :feature do
         expect(page).to have_content(" created less than a minute ago")
       end
     end
+
+    it "can see an update link to update shelter" do
+      shelter = create(:shelter)
+
+      visit "/shelters"
+      click_link "Edit"
+      expect(current_path).to eq("/shelters/#{shelter.id}/edit")
+    end
   end
 end
