@@ -44,5 +44,15 @@ RSpec.describe "shelters index page", type: :feature do
       click_link "Edit"
       expect(current_path).to eq("/shelters/#{shelter.id}/edit")
     end
+
+    it "can delete a shelter" do
+      shelter = create(:shelter)
+
+      visit "/shelters"
+      click_link "Delete"
+
+      expect(current_path).to eq("/shelters")
+      expect(page).to_not have_content(shelter.name)
+    end
   end
 end

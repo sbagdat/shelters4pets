@@ -6,6 +6,11 @@
         <%= "#{time_ago_in_words(shelter.created_at)} ago" %>
       </span> -
       <%= link_to "Edit", edit_shelter_path(shelter), class: "text-gray-600 none hover:underline hover:text-blue-500" %>
+      |
+      <%= link_to "Delete", shelter_path(shelter),
+                  method: :delete,
+                  class: "text-gray-600 none hover:underline hover:text-red-500",
+                  data: { confirm: "Are you sure?" } %>
     </div>
   <% end %>
 </li>
