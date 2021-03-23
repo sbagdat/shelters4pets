@@ -45,7 +45,7 @@ class PetsController < ApplicationController
   end
 
   def select_shelter
-    @shelter = Shelter.find(params[:shelter_id])
+    @shelter = Shelter.includes(:pets).find(params[:shelter_id])
   end
 
   def select_pet

@@ -1,0 +1,13 @@
+<div class="flex">
+  <%= form_with url: request.path, method: :get, local: true do |form| %>
+    <span class="font-bold">Filters: </span>
+    <%= form.label :age_filter, "age greater than: ", class: "text-sm text-gray-400 ml-4" %>
+    <%= form.number_field :age_filter, value: (params[:age_filter] || 0), min: 0, class: "w-16 inline-block mx-4 border rounded-md p-1" %>
+    <%= form.submit "Apply Filter", class: "#{TailwindHelper::BTN_CLASS} bg-gray-500 p-1 text-sm" %>
+  <% end %>
+  <%= button_to "Sort Alphabetically",
+                "/shelters/#{@shelter.id}/pets",
+                method: :get,
+                params: { sorted: true },
+                class: "#{TailwindHelper::BTN_CLASS} bg-gray-500 p-1 text-sm w-40" %>
+</div>
