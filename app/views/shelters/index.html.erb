@@ -7,6 +7,19 @@
   <%= tw_button "Descending", request.path, "bg-gray-100 text-gray-600 w-32", params: { sort: "desc"}, method: :get %>
 </div>
 
+<div class="flex flex-wrap content-between items-center bg-gray-100 rounded-md p-4">
+  <span class="text-gray-400 text-md block mr-4">Filter by: </span>
+  <%= form_with url: request.path, method: :get, class: "filter-by-exact-name" do |form| %>
+    <div class="form-field">
+      <%= form.label :exact_name %>
+      <%= form.text_field :exact_name, class: "border rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300" %>
+      <%=form.submit "Filter", class: "block p-2 bg-gray-300 text-gray-600 border w-24 text-center rounded-md my-4 inline-block" %>
+    </div>
+  <% end %>
+</div>
+
+
+
 <ul class="shelters">
   <%= render @shelters %>
 </ul>

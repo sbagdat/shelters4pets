@@ -6,6 +6,7 @@ class SheltersController < ApplicationController
   def index
     @shelters = Shelter.all_descending
     sort_by_pets_if_needed
+    filter_by_exact_name
   end
 
   def show; end
@@ -48,6 +49,13 @@ class SheltersController < ApplicationController
     sort_type = params[:sort]
     if sort_type
       @shelters = Shelter.sort_by_pets_count(sort_type.to_sym)
+    end
+  end
+
+  def filter_by_exact_name
+    name_param = params[:exact_name]
+    if name_param
+      @shelters = Shelter.filter_by_name(name_param)
     end
   end
 
