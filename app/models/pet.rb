@@ -11,6 +11,8 @@ class Pet < ApplicationRecord
   validates :age, numericality: { only_integer: true }
 
   scope :age_older_than, ->(age) { where("age > ?", age) }
+  scope :filter_by_name, ->(name) { where(name: name) }
+  scope :filter_by_partial_name, ->(name) { where("name ~* ?", name) }
 
   delegate :name, to: :shelter, prefix: true, allow_nil: true
 

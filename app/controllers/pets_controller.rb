@@ -12,6 +12,8 @@ class PetsController < ApplicationController
     else
       @pets = Pet.all
     end
+    apply_exact_match_filter
+    apply_partial_match_filter
   end
 
   def show; end
@@ -63,6 +65,16 @@ class PetsController < ApplicationController
   def apply_age_filter
     age_filter = params[:age_filter]
     @pets = @pets.age_older_than(age_filter.to_i) if age_filter
+  end
+
+  def apply_exact_match_filter
+    name_param = params[:exact_name]&.strip
+    @pets = @pets.filter_by_name(name_param) if name_param && !name_param.empty?
+  end
+
+  def apply_partial_match_filter
+    name_param = params[:partial_name]&.strip
+    @pets = @pets.filter_by_partial_name(name_param) if name_param && !name_param.empty?
   end
 
   def pet_params

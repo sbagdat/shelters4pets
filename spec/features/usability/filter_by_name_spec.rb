@@ -37,5 +37,41 @@ RSpec.describe "search by exact name", type: :feature do
         expect(page).to_not have_content("Merkez Barınak")
       end
     end
+
+    describe "pets index" do
+      it "can search pets by exact name" do
+        shelter1 = create(:shelter)
+        shelter1.pets.create(name: "Puppy", breed: "English", age: 5)
+        shelter1.pets.create(name: "Fifi", breed: "French", age: 4)
+
+        visit "/pets"
+
+        within ".filter-by-exact-name" do
+          fill_in "Exact name", with: "Puppy"
+          click_button "Filter"
+        end
+
+        expect(page).to have_content("Puppy")
+        expect(page).to_not have_content("Fifi")
+      end
+
+      it "can search pets by partial name" do
+        shelter1 = create(:shelter)
+        shelter1.pets.create(name: "Puppy", breed: "English", age: 5)
+        shelter1.pets.create(name: "Pupper", breed: "French", age: 4)
+        shelter1.pets.create(name: "Bro", breed: "French", age: 4)
+
+        visit "/pets"
+
+        within ".filter-by-partial-name" do
+          fill_in "Partial name", with: "pup"
+          click_button "Filter"
+        end
+
+        expect(page).to have_content("Puppy")
+        expect(page).to have_content("Pupper")
+        expect(page).to_not have_content("Bro")
+      end
+    end
   end
 end

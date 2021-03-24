@@ -1,4 +1,26 @@
 <h2 class="text-2xl text-gray-600 mb-8 mr-8 inline-block">All Pets</h2>
+<div class="flex flex-wrap content-between items-center bg-gray-100 rounded-md px-2 mb-2">
+  <span class="text-gray-400 text-md block mr-4">Filter by: </span>
+  <%= form_with url: request.path, method: :get, class: "filter-by-exact-name" do |form| %>
+    <div class="form-field">
+      <%= form.label :exact_name %>
+      <%= form.text_field :exact_name, value: params[:exact_name], class: "border rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300" %>
+      <%= form.submit "Filter", class: "block p-2 bg-gray-300 text-gray-600 border w-24 text-center rounded-md my-4 inline-block" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="flex flex-wrap content-between items-center bg-gray-100 rounded-md px-2 mb-2">
+  <span class="text-gray-400 text-md block mr-4">Filter by: </span>
+  <%= form_with url: request.path, method: :get, class: "filter-by-partial-name" do |form| %>
+    <div class="form-field">
+      <%= form.label :partial_name %>
+      <%= form.text_field :partial_name, value: params[:exact_name], class: "border rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300" %>
+      <%= form.submit "Filter", class: "block p-2 bg-gray-300 text-gray-600 border w-24 text-center rounded-md my-4 inline-block" %>
+    </div>
+  <% end %>
+</div>
+
 <ul class="list-none">
   <%= render @pets %>
 </ul>
