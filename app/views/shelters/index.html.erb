@@ -1,24 +1,33 @@
 <h2 class="text-2xl">All Shelters</h2>
 <%= tw_link "New Shelter", new_shelter_path, "bg-gray-100 w-32 text-gray-600" %>
 
-<div class="flex flex-wrap content-between items-center">
-  <span class="text-gray-400 text-md block mr-4">Sort by pets count: </span>
-  <%= tw_button "Ascending", request.path, "bg-gray-100 text-gray-600 w-32 mr-4", params: { sort: "asc"}, method: :get %>
-  <%= tw_button "Descending", request.path, "bg-gray-100 text-gray-600 w-32", params: { sort: "desc"}, method: :get %>
-</div>
-
-<div class="flex flex-wrap content-between items-center bg-gray-100 rounded-md p-4">
+<div class="flex flex-wrap content-between items-center bg-gray-100 rounded-md px-2 mb-2">
   <span class="text-gray-400 text-md block mr-4">Filter by: </span>
   <%= form_with url: request.path, method: :get, class: "filter-by-exact-name" do |form| %>
     <div class="form-field">
       <%= form.label :exact_name %>
-      <%= form.text_field :exact_name, class: "border rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300" %>
-      <%=form.submit "Filter", class: "block p-2 bg-gray-300 text-gray-600 border w-24 text-center rounded-md my-4 inline-block" %>
+      <%= form.text_field :exact_name, value: params[:exact_name], class: "border rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300" %>
+      <%= form.submit "Filter", class: "block p-2 bg-gray-300 text-gray-600 border w-24 text-center rounded-md my-4 inline-block" %>
     </div>
   <% end %>
 </div>
 
+<div class="flex flex-wrap content-between items-center bg-gray-100 rounded-md px-2">
+  <span class="text-gray-400 text-md block mr-4">Filter by: </span>
+  <%= form_with url: request.path, method: :get, class: "filter-by-partial-name" do |form| %>
+    <div class="form-field">
+      <%= form.label :partial_name %>
+      <%= form.text_field :partial_name, value: params[:partial_name], class: "border rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300" %>
+      <%= form.submit "Filter", class: "block p-2 bg-gray-300 text-gray-600 border w-24 text-center rounded-md my-4 inline-block" %>
+    </div>
+  <% end %>
+</div>
 
+<div class="flex flex-wrap content-between items-center">
+  <span class="text-gray-400 text-md block mr-4">Sort by pets count: </span>
+  <%= tw_button "Ascending", request.path, "bg-gray-100 text-gray-600 w-32 mr-4", params: { sort: "asc" }, method: :get %>
+  <%= tw_button "Descending", request.path, "bg-gray-100 text-gray-600 w-32", params: { sort: "desc" }, method: :get %>
+</div>
 
 <ul class="shelters">
   <%= render @shelters %>

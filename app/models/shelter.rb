@@ -9,4 +9,5 @@ class Shelter < ApplicationRecord
   scope :all_descending, -> { all.order(created_at: :desc) }
   scope :sort_by_pets_count, ->(type) { order(pets_count: type) }
   scope :filter_by_name, ->(name) { where(name: name) }
+  scope :filter_by_partial_name, ->(name) { where("name ~* ?", name) }
 end
