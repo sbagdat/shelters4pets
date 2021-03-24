@@ -5,9 +5,6 @@
     <%= form.number_field :age_filter, value: (params[:age_filter] || 0), min: 0, class: "w-16 inline-block mx-4 border rounded-md p-1" %>
     <%= form.submit "Apply Filter", class: "#{TailwindHelper::BTN_CLASS} bg-gray-500 p-1 text-sm" %>
   <% end %>
-  <%= button_to "Sort Alphabetically",
-                "/shelters/#{@shelter.id}/pets",
-                method: :get,
-                params: { sorted: true },
-                class: "#{TailwindHelper::BTN_CLASS} bg-gray-500 p-1 text-sm w-40" %>
+  <%= tw_button "Sort Alphabetically", "/shelters/#{@shelter.id}/pets", "bg-gray-500 p-1 text-sm w-40",
+                method: :get, params: { sorted: true } %>
 </div>

@@ -8,13 +8,7 @@
     </span><%= link_to @pet.shelter_name, shelter_path(@pet.shelter), class: "hover:underline" %>
   </p>
   <p class="links">
-    <%= link_to "Edit",
-                edit_pet_path(@pet),
-                class: "block p-2 bg-blue-500 text-white border w-32 text-center rounded-md my-4 inline-block" %>
-    <%= link_to "Delete",
-                pet_path(@pet),
-                method: :delete,
-                class: "block p-2 bg-red-500 text-white border w-32 text-center rounded-md my-4 inline-block",
-                data: { confirm: "Are you sure?" } %>
+    <%= tw_link "Edit", edit_pet_path(@pet), "bg-blue-600 w-32 text-center" %>
+    <%= tw_link "Delete", pet_path(@pet), "bg-red-800 w-32", method: :delete, data: { confirm: "Are you sure?" } %>
   </p>
 </div>

@@ -1,9 +1,12 @@
 <h2 class="text-2xl">All Shelters</h2>
-<%= link_to "New Shelter", new_shelter_path, class: "block p-2 bg-gray-100 border w-32 text-center rounded-md my-4" %>
+<%= tw_link "New Shelter", new_shelter_path, "bg-gray-100 w-32 text-gray-600" %>
 
-<p>
-  <%= button_to "Ascending", request.path, params: {sort: "asc"}, method: :get %>
-</p>
+<div class="flex flex-wrap content-between items-center">
+  <span class="text-gray-400 text-md block mr-4">Sort by pets count: </span>
+  <%= tw_button "Ascending", request.path, "bg-gray-100 text-gray-600 w-32 mr-4", params: { sort: "asc"}, method: :get %>
+  <%= tw_button "Descending", request.path, "bg-gray-100 text-gray-600 w-32", params: { sort: "desc"}, method: :get %>
+</div>
+
 <ul class="shelters">
   <%= render @shelters %>
 </ul>
