@@ -8,5 +8,5 @@ class Shelter < ApplicationRecord
 
   scope :all_descending, -> { all.order(created_at: :desc) }
 
-  scope :sort_by_pets_count, ->(type) { joins(:pets).group("shelters.id").order("COUNT(pets.shelter_id) #{type}") }
+  scope :sort_by_pets_count, ->(type) { order(pets_count: type) }
 end

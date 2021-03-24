@@ -47,7 +47,7 @@ class SheltersController < ApplicationController
   def sort_by_pets_if_needed
     sort_type = params[:sort]
     if sort_type
-      @shelters = Shelter.sort_by_pets_count(sort_type)
+      @shelters = Shelter.sort_by_pets_count(sort_type.to_sym)
     end
   end
 

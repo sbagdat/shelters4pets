@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pet < ApplicationRecord
-  belongs_to :shelter
+  belongs_to :shelter, counter_cache: true
   before_save :make_not_adoptable, if: :shelter
 
   attribute :adoptable, :boolean, default: true
