@@ -5,6 +5,7 @@ class SheltersController < ApplicationController
 
   def index
     @shelters = Shelter.all_descending
+    sort_by_pets_if_needed
   end
 
   def show; end
@@ -41,6 +42,13 @@ class SheltersController < ApplicationController
 
   def select_shelter
     @shelter = Shelter.find(params[:id])
+  end
+
+  def sort_by_pets_if_needed
+    sort_type = params[:sort]
+    if sort_type
+      @shelters = Shelter.sort_by_pets_count(sort_type)
+    end
   end
 
   def shelter_params
