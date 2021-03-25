@@ -4,10 +4,13 @@ class SheltersController < ApplicationController
   before_action :select_shelter, except: %i[index new create]
 
   def index
-    @shelters = Shelter.all_descending
-    sort_by_pets_if_needed
-    filter_by_partial_name
-    filter_by_exact_name
+    @shelters = if params[:sort].present?
+                  sort_by_pets_count
+                elsif params[:name].present?
+                  filter_by_name
+                else
+                  Shelter.all_descending
+                end
   end
 
   def show; end
@@ -42,23 +45,16 @@ class SheltersController < ApplicationController
 
   private
 
+  def filter_by_name
+    Shelter.filter_by_name(params[:name].strip, params[:exact])
+  end
+
+  def sort_by_pets_count
+    Shelter.sort_by_pets_count(params[:sort].strip)
+  end
+
   def select_shelter
     @shelter = Shelter.find(params[:id])
-  end
-
-  def sort_by_pets_if_needed
-    sort_type = params[:sort]
-    @shelters = Shelter.sort_by_pets_count(sort_type.to_sym) if sort_type
-  end
-
-  def filter_by_exact_name
-    name_param = params[:exact_name]&.strip
-    @shelters = Shelter.filter_by_name(name_param) if name_param && !name_param.empty?
-  end
-
-  def filter_by_partial_name
-    name_param = params[:partial_name]&.strip
-    @shelters = Shelter.filter_by_partial_name(name_param) if name_param && !name_param.empty?
   end
 
   def shelter_params

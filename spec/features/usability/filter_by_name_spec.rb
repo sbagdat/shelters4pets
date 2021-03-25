@@ -11,26 +11,24 @@ RSpec.describe "search by exact name", type: :feature do
 
         visit "/shelters"
 
-        within ".filter-by-exact-name" do
-          fill_in "Exact name", with: "Kızılay Barınağı"
-          click_button "Filter"
-        end
+        fill_in "Filter by name:", with: "Kızılay Barınağı"
+        check "Exact match"
+        click_button "Filter"
 
         expect(page).to have_content("Kızılay Barınağı")
         expect(page).to_not have_content("Odunpazarı Barınağı")
       end
 
-      it "can search shelters by exact name" do
+      it "can search shelters by partial name" do
         create(:shelter, name: "Kızılay Barınağı")
         create(:shelter, name: "Odunpazarı Barınağı")
         create(:shelter, name: "Merkez Barınak")
 
         visit "/shelters"
 
-        within ".filter-by-partial-name" do
-          fill_in "Partial name", with: "Barınağı"
-          click_button "Filter"
-        end
+        fill_in "Filter by name:", with: "barınağı"
+        uncheck "Exact match"
+        click_button "Filter"
 
         expect(page).to have_content("Kızılay Barınağı")
         expect(page).to have_content("Odunpazarı Barınağı")

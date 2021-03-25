@@ -6,8 +6,14 @@ class Shelter < ApplicationRecord
   validates :name, :rank, :city, presence: true
   validates :rank, numericality: { only_integer: true }
 
-  scope :all_descending, -> { all.order(created_at: :desc) }
-  scope :sort_by_pets_count, ->(type) { order(pets_count: type) }
-  scope :filter_by_name, ->(name) { where(name: name) }
-  scope :filter_by_partial_name, ->(name) { where("name ~* ?", name) }
+  scope :columns_for_index, -> { select(:id, :name, :created_at, :pets_count) }
+  scope :all_descending, -> { columns_for_index.order(created_at: :desc) }
+  scope :sort_by_pets_count, ->(sort_type) { columns_for_index.order(pets_count: sort_type) }
+  scope :filter_by_name, lambda { |name, exact|
+    if exact
+      columns_for_index.where("LOWER(name) = ?", name.downcase)
+    else
+      columns_for_index.where("LOWER(name) ~* ?", name.downcase)
+    end
+  }
 end
