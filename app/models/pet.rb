@@ -10,11 +10,19 @@ class Pet < ApplicationRecord
   validates :name, :breed, presence: true
   validates :age, numericality: { only_integer: true }
 
-  scope :age_older_than, ->(age) { where("age > ?", age) }
-  scope :filter_by_name, ->(name) { where(name: name) }
-  scope :filter_by_partial_name, ->(name) { where("name ~* ?", name) }
+  scope :age_older_than, ->(age) { columns_for_index.where("age > ?", age) }
 
-  delegate :name, to: :shelter, prefix: true, allow_nil: true
+  def self.columns_for_index
+    joins(:shelter).select(:id, :name, :breed, :age, :shelter_id, "shelters.name AS shelter_name")
+  end
+
+  def self.filter_by_name(name, exact)
+    if exact
+      columns_for_index.where("LOWER(pets.name) = ?", name.downcase)
+    else
+      columns_for_index.where("LOWER(pets.name) ~* ?", name.downcase)
+    end
+  end
 
   private
 

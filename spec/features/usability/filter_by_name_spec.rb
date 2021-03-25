@@ -44,10 +44,9 @@ RSpec.describe "search by exact name", type: :feature do
 
         visit "/pets"
 
-        within ".filter-by-exact-name" do
-          fill_in "Exact name", with: "Puppy"
-          click_button "Filter"
-        end
+        fill_in "Filter by name:", with: "puppy"
+        uncheck "Exact match"
+        click_button "Filter"
 
         expect(page).to have_content("Puppy")
         expect(page).to_not have_content("Fifi")
@@ -61,10 +60,9 @@ RSpec.describe "search by exact name", type: :feature do
 
         visit "/pets"
 
-        within ".filter-by-partial-name" do
-          fill_in "Partial name", with: "pup"
-          click_button "Filter"
-        end
+        fill_in "Filter by name:", with: "pup"
+        uncheck "Exact match"
+        click_button "Filter"
 
         expect(page).to have_content("Puppy")
         expect(page).to have_content("Pupper")

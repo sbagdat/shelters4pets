@@ -2,18 +2,18 @@
 
 class PetsController < ApplicationController
   before_action :select_pet, except: %i[index new create]
-  before_action :select_shelter, if: -> { params[:shelter_id] }
+  before_action :select_shelter, if: -> { params[:shelter_id].present? }
   before_action :select_shelter_pets, if: -> { @shelter }
 
   def index
-    if @shelter
+    if params[:shelter_id].present?
       apply_filters
       render "shelters/show"
+    elsif params[:name].present?
+      filter_by_name
     else
-      @pets = Pet.all
+      @pets = Pet.columns_for_index
     end
-    apply_exact_match_filter
-    apply_partial_match_filter
   end
 
   def show; end
@@ -51,7 +51,7 @@ class PetsController < ApplicationController
   end
 
   def select_pet
-    @pet = Pet.find(params[:id])
+    @pet = Pet.columns_for_index.find(params[:id])
   end
 
   def select_shelter_pets
@@ -67,14 +67,8 @@ class PetsController < ApplicationController
     @pets = @pets.age_older_than(age_filter.to_i) if age_filter
   end
 
-  def apply_exact_match_filter
-    name_param = params[:exact_name]&.strip
-    @pets = @pets.filter_by_name(name_param) if name_param && !name_param.empty?
-  end
-
-  def apply_partial_match_filter
-    name_param = params[:partial_name]&.strip
-    @pets = @pets.filter_by_partial_name(name_param) if name_param && !name_param.empty?
+  def filter_by_name
+    @pets = Pet.filter_by_name(params[:name].strip, params[:exact])
   end
 
   def pet_params
