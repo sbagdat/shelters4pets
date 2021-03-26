@@ -1,0 +1,70 @@
+.record-form {
+  display: grid;
+  row-gap: 10px;
+  justify-content: center;
+  grid-column: 1 / span 2;
+}
+
+.record-form div {
+  display: grid;
+  grid-template-columns: 60vw;
+}
+
+.record-form label {
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.record-form input[type=submit] {
+  border: 1px solid #2f5f48;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1em;
+  font-weight: bold;
+  background-color: #8eb8b8;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+input[type="text"] {
+  font-size: 1em;
+  padding: 10px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+input:active, input:focus {
+  border: 1px solid #0a123e;
+}
+
+label,
+.text-sm {
+  font-size: 1em;
+  font-weight: bold;
+  color: #666;
+}
+
+.filter-form {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  width: 400px;
+}
+
+.filter-form.vertical {
+  display: grid;
+  row-gap: 10px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.filter-form.horizontal {
+  display: flex;
+  column-gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.filter-form .header {
+  text-align: center;
+}

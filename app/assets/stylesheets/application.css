@@ -119,48 +119,6 @@ h2 {
   column-gap: 10px;
 }
 
-.vertical {
-  display: grid;
-  row-gap: 10px;
-  border-bottom: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.filter-form {
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  width: 400px;
-}
-
-.horizontal {
-  display: flex;
-  column-gap: 10px;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.filter-form .header {
-  text-align: center;
-}
-
-label,
-.text-sm {
-  font-size: 1em;
-  font-weight: bold;
-  color: #666;
-}
-
-input[type="text"] {
-  font-size: 1em;
-  padding: 10px;
-  outline: none;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-input:active, input:focus {
-  border: 1px solid #0a123e;
-}
 
 .buttons {
   justify-self: flex-end;
