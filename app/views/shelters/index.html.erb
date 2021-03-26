@@ -1,25 +1,32 @@
-<h2 class="text-2xl">All Shelters</h2>
-<%= tw_link "New Shelter", new_shelter_path, "bg-gray-100 w-32 text-gray-600" %>
-
-<div class="flex flex-wrap content-between items-center bg-gray-100 rounded-md px-2 mb-2">
-  <%= form_with url: request.path, method: :get do |form| %>
-    <div class="form-field">
-      <label for="name">Filter by name:
-        <%= form.text_field :name, value: params[:name], class: "border rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300" %>
-      </label>
-      <label for="exact">
-        <%= check_box_tag(:exact, "true", (params.key?(:exact))) %>
-        Exact match
-      </label>
-      <%= form.submit "Filter", class: "block p-2 bg-gray-300 text-gray-600 border w-24 text-center rounded-md my-4 inline-block" %>
+<h2>All Shelters</h2>
+<div class="section-top">
+  <div class="filters">
+    <%= form_with url: request.path, method: :get, class: "vertical filter-form" do |form| %>
+        <label for="name" class=" header">Filter by name</label>
+        <%= form.text_field :name, value: params[:name] %>
+        <label for="exact">
+          <%= check_box_tag(:exact, "true", (params.key?(:exact))) %>
+          Exact match
+        </label>
+        <%= button_tag class: "filter-button btn-white" do %>
+          <span class="icon-filter">Filter</span>
+        <% end %>
+    <% end %>
+    <div class="horizontal filter-form">
+      <span class="text-sm">Sort by pets count: </span>
+      <%= button_to request.path, id:"sort-asc", class: "filter-button btn-white", params: { sort: "asc" }, method: :get do %>
+        <span class="icon-sort-name-up"></span>
+      <% end %>
+      <%= button_to request.path, id:"sort-desc", class: "filter-button btn-white", params: { sort: "desc" }, method: :get do %>
+        <span class="icon-sort-name-down"></span>
+      <% end %>
     </div>
-  <% end %>
-</div>
-
-<div class="flex flex-wrap content-between items-center">
-  <span class="text-gray-400 text-md block mr-4">Sort by pets count: </span>
-  <%= tw_button "Ascending", request.path, "bg-gray-100 text-gray-600 w-32 mr-4", params: { sort: "asc" }, method: :get %>
-  <%= tw_button "Descending", request.path, "bg-gray-100 text-gray-600 w-32", params: { sort: "desc" }, method: :get %>
+  </div>
+  <div class="buttons">
+    <%= link_to new_shelter_path, class: "link-as-button btn-white" do %>
+      <span class="icon-plus">New Shelter</span>
+    <% end %>
+  </div>
 </div>
 
 <ul class="shelters">

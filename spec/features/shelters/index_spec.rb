@@ -23,17 +23,17 @@ RSpec.describe "shelters index page", type: :feature do
 
       within "ul.shelters > li:first-child" do
         expect(page).to have_content(shelter3.name)
-        expect(page).to have_content(" created less than a minute ago")
+        expect(page).to have_content("created less than a minute ago")
       end
 
       within "ul.shelters > li:nth-child(2)" do
         expect(page).to have_content(shelter2.name)
-        expect(page).to have_content(" created less than a minute ago")
+        expect(page).to have_content("created less than a minute ago")
       end
 
       within "ul.shelters > li:last-child" do
         expect(page).to have_content(shelter1.name)
-        expect(page).to have_content(" created less than a minute ago")
+        expect(page).to have_content("created less than a minute ago")
       end
     end
 

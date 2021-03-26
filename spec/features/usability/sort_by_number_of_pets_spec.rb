@@ -17,8 +17,8 @@ RSpec.describe "sort shelters by number of pets ", type: :feature do
         end
 
         visit "/shelters"
+        click_button "sort-asc"
 
-        click_button "Ascending"
         within ".shelters li:first-child" do
           expect(page).to have_content(shelter2.name)
           expect(page).to have_content(shelter2.pets.count)
@@ -47,8 +47,7 @@ RSpec.describe "sort shelters by number of pets ", type: :feature do
         end
 
         visit "/shelters"
-
-        click_button "Descending"
+        click_button "sort-desc"
 
         within ".shelters li:first-child" do
           expect(page).to have_content(shelter3.name)

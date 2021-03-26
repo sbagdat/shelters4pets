@@ -11,7 +11,7 @@ RSpec.describe "search by exact name", type: :feature do
 
         visit "/shelters"
 
-        fill_in "Filter by name:", with: "Kızılay Barınağı"
+        fill_in "Filter by name", with: "Kızılay Barınağı"
         check "Exact match"
         click_button "Filter"
 
@@ -26,7 +26,7 @@ RSpec.describe "search by exact name", type: :feature do
 
         visit "/shelters"
 
-        fill_in "Filter by name:", with: "barınağı"
+        fill_in "Filter by name", with: "barınağı"
         uncheck "Exact match"
         click_button "Filter"
 
