@@ -68,3 +68,16 @@ label,
 .filter-form .header {
   text-align: center;
 }
+
+.line-form {
+  width: 80vw;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+}
+
+.line-form label,
+.line-form span {
+  font-size: 1em;
+  color: #000;
+}

@@ -1,10 +1,13 @@
-<div class="flex">
+<div class="horizontal filter-form line-form">
+  <span class="text-sm">Filters: </span>
   <%= form_with url: request.path, method: :get, local: true do |form| %>
-    <span class="font-bold">Filters: </span>
-    <%= form.label :age_filter, "age greater than: ", class: "text-sm text-gray-400 ml-4" %>
-    <%= form.number_field :age_filter, value: (params[:age_filter] || 0), min: 0, class: "w-16 inline-block mx-4 border rounded-md p-1" %>
-    <%= form.submit "Apply Filter", class: "#{TailwindHelper::BTN_CLASS} bg-gray-500 p-1 text-sm" %>
+    <%= form.label :age_filter, "age greater than: " %>
+    <%= form.text_field :age_filter, value: (params[:age_filter] || 0), min: 0 %>
+    <%= button_tag class: "btn-md btn-white" do %>
+      <span class="icon-filter"></span>
+    <% end %>
   <% end %>
-  <%= tw_button "Sort Alphabetically", "/shelters/#{@shelter.id}/pets", "bg-gray-500 p-1 text-sm w-40",
-                method: :get, params: { sorted: true } %>
+  <%= button_to request.path, id:"sorted", class: "btn-md btn-white", params: { sorted: true }, method: :get do %>
+    <span class="icon-sort-name-up"></span>
+  <% end %>
 </div>

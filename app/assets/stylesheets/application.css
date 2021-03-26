@@ -119,7 +119,6 @@ h2 {
   column-gap: 10px;
 }
 
-
 .buttons {
   justify-self: flex-end;
 }
@@ -165,13 +164,13 @@ h2 {
   border-top: 1px solid #ddd;
 }
 
-.shelter .action-links a{
+.shelter .action-links a {
   padding: 10px 5px 10px;
   background-color: rgba(58, 62, 87, 0.70);
   color: #fff;
 }
 
-.shelter .action-links a:hover{
+.shelter .action-links a:hover {
   background-color: rgba(58, 62, 87, 0.90);
 }
 
@@ -183,7 +182,7 @@ h2 {
   background-image: url('/assets/pet.png');
   background-size: 80px 80px;
   background-repeat: no-repeat;
-  background-position: 320px 35px;
+  background-position: bottom 20px right 20px;
 }
 
 .pet .details {
@@ -196,4 +195,89 @@ h2 {
   display: inline-block;
   width: 60px;
   font-weight: 700;
+}
+
+.pet-details,
+.shelter-details {
+  gap: 20px;
+}
+
+.pet-details p {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  grid-column-end: span 2;
+  font-size: 1.2em;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+.pet-details p span {
+  font-weight: 700;
+}
+
+.btn-md,
+.btn-lg {
+  width: 60px;
+  padding: 10px;
+  font-weight: 700;
+  font-size: 1em;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.hover-blue:hover {
+  background-color: #0f579e;
+  color: #fff;
+}
+
+.hover-red:hover {
+  background-color: #9e0f59;
+  color: #fff;
+}
+
+.hover-yellow:hover {
+  background-color: #db9824;
+  color: #fff;
+}
+
+.btn-lg {
+  width: 100px;
+}
+
+.shelter-details p {
+  grid-column: 1 / span 2;
+  font-size: 1.2em;
+}
+
+.shelter-details p span {
+  display: inline-block;
+  font-weight: 700;
+  width: 100px;
+}
+
+.justify-right {
+  text-align: right;
+}
+
+.-mt-40{
+  margin-top: -40px;
+  display: grid;
+  row-gap: 10px;
+}
+
+.shelter-details h3 {
+  font-size: 1.4em;
+  margin-top: 20px;
+  border-bottom: 2px dashed #999;
+  grid-column-end: span 2;
+  margin-bottom: 20px;
+}
+
+.shelter-details .filter-form {
+  grid-column-end: span 2;
+}
+
+.shelter-details .pets {
+  grid-column-end: span 2;
 }

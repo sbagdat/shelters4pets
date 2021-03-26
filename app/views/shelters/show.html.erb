@@ -1,19 +1,26 @@
-<div class="block p-2 bg-gray-50 border rounded-md my-4 p-4">
-  <h2 class="text-2xl text-gray-600 mb-8 mr-8 inline-block uppercase"><%= @shelter.name %></h2>
-  <%= tw_link "Edit", edit_shelter_path(@shelter), "bg-blue-500" %>
-  <%= tw_link "Delete", shelter_path(@shelter), "bg-red-500", method: :delete, data: { confirm: "Are you sure?" } %>
+<h2>Shelter Details: <%= @shelter.name.upcase %></h2>
+<div class="section-top shelter-details">
+  <p class="justify-right">
+    <%= link_to "Edit", edit_shelter_path(@shelter), class: "btn-md hover-blue" %>
+    <%= link_to "Delete", shelter_path(@shelter),
+                class: "btn-md hover-red", method: :delete, data: { confirm: "Are you sure?" } %>
+  </p>
+<div class="-mt-40">
+  <p><span>City:</span> <%= @shelter.city %></p>
+  <p><span>Rank:</span> <%= @shelter.rank %></p>
+  <p><span>Pets Count:</span> <%= @shelter.pets.size %></p>
 
-  <p><span class="font-bold w-24 inline-block">City:</span> <%= @shelter.city %></p>
-  <p><span class="font-bold w-24 inline-block">Rank:</span> <%= @shelter.rank %></p>
-  <p><span class="font-bold w-24 inline-block">Pets Count:</span> <%= @shelter.pets.size %></p>
+</div>
 
-  <%= tw_link "Show Pets", shelter_pets_path(@shelter), "bg-yellow-400" %>
-  <%= tw_link "New Pet", new_shelter_pet_path(@shelter), "bg-gray-400" %>
+  <p>
+    <%= link_to "Show Pets", shelter_pets_path(@shelter), class: "btn-lg hover-yellow" %>
+    <%= link_to "New Pet", new_shelter_pet_path(@shelter), class: "btn-lg hover-blue" %>
+  </p>
 
   <% if @pets %>
-    <h3 class="text-xl text-gray-600 my-8 mr-8 block uppercase">Pets sheltered by <%= @shelter.name %></h3>
+    <h3>Pets under <%= @shelter.name %></h3>
     <%= render "filter_form" %>
-    <ul class="pets list-none">
+    <ul class="pets">
       <%= render @pets, local: { hide_owner: true } %>
     </ul>
   <% end %>
