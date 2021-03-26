@@ -44,7 +44,7 @@ RSpec.describe "search by exact name", type: :feature do
 
         visit "/pets"
 
-        fill_in "Filter by name:", with: "puppy"
+        fill_in "Filter by name", with: "puppy"
         uncheck "Exact match"
         click_button "Filter"
 
@@ -60,7 +60,7 @@ RSpec.describe "search by exact name", type: :feature do
 
         visit "/pets"
 
-        fill_in "Filter by name:", with: "pup"
+        fill_in "Filter by name", with: "pup"
         uncheck "Exact match"
         click_button "Filter"
 

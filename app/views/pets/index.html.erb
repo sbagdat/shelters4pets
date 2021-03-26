@@ -1,21 +1,20 @@
-<h2 class="text-2xl text-gray-600 mb-8 mr-8 inline-block">All Pets</h2>
-
-<div class="flex flex-wrap content-between items-center bg-gray-100 rounded-md px-2 mb-2">
-  <%= form_with url: request.path, method: :get do |form| %>
-    <div class="form-field">
-      <label for="name">Filter by name:
-        <%= form.text_field :name, value: params[:name], class: "border rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300" %>
-      </label>
+<h2>All Pets</h2>
+<div class="section-top">
+  <div class="filters">
+    <%= form_with url: request.path, method: :get, class: "vertical filter-form" do |form| %>
+      <label for="name" class=" header">Filter by name</label>
+      <%= form.text_field :name, value: params[:name] %>
       <label for="exact">
         <%= check_box_tag(:exact, "true", (params.key?(:exact))) %>
         Exact match
       </label>
-      <%= form.submit "Filter", class: "block p-2 bg-gray-300 text-gray-600 border w-24 text-center rounded-md my-4 inline-block" %>
-    </div>
-  <% end %>
+      <%= button_tag class: "filter-button btn-white" do %>
+        <span class="icon-filter">Filter</span>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
-<ul class="list-none">
+<ul class="pets">
   <%= render @pets %>
 </ul>
-

@@ -166,7 +166,8 @@ input:active, input:focus {
   justify-self: flex-end;
 }
 
-.shelters {
+.shelters,
+.pets {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -175,7 +176,8 @@ input:active, input:focus {
   gap: 16px;
 }
 
-.shelter {
+.shelter,
+.pet {
   border: 1px solid #ddd;
   border-radius: 5px;
   overflow: hidden;
@@ -217,4 +219,23 @@ input:active, input:focus {
 
 .shelter .action-links a:first-child {
   border-right: 1px solid #ddd;
+}
+
+.pet {
+  background-image: url('/assets/pet.png');
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+  background-position: 320px 35px;
+}
+
+.pet .details {
+  padding: 20px;
+  display: grid;
+  row-gap: 10px;
+}
+
+.pet .details p span {
+  display: inline-block;
+  width: 60px;
+  font-weight: 700;
 }
